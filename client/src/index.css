@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+@import "tailwindcss";
+
+*{
+  font-family: "Outfit", sans-serif;
+}
+
+@theme {
+  --color-primary: #F97316;
+  --color-primary-dull: #EA580C;
+  --color-light: #F8F9FA;
+  --color-borderColor: #c4c7d2;
+}
+
+/* Custom orange dot cursor */
+.cursor-orange-dot {
+  cursor: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3ccircle cx='8' cy='8' r='6' fill='%23F97316' stroke='%23F97316' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3e%3c/svg%3e") 8 8, auto;
+}
+
+/* Custom white dot cursor for CTA buttons */
+.cursor-white-dot {
+  cursor: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3e%3ccircle cx='8' cy='8' r='6' fill='white'/%3e%3c/svg%3e") 8 8, auto;
+}
+
+/* Dropdown selection highlight - change from blue to orange */
+select option:checked,
+select option:selected,
+select option[selected] {
+  background-color: #F97316 !important;
+  color: white !important;
+}
+
+select option:hover,
+select option:focus {
+  background-color: #EA580C !important;
+  color: white !important;
+}
+
+/* Override browser default blue colors in dropdowns */
+select:focus {
+  outline: 2px solid #F97316 !important;
+  outline-offset: 2px;
+}
