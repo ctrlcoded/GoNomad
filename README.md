@@ -21,6 +21,9 @@ GoNomad is a platform for renting and lending cars and bikes — making travel e
 🛠 Tech Stack
 
 MongoDB → Database (stores app data)
+
 Express.js → Backend framework (handles server logic, APIs, middleware)
+
 React.js → Frontend library (builds UI, handles user interactions)
+
 Node.js → Runtime environment (runs JavaScript on the server)
