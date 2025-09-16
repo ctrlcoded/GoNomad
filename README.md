@@ -4,37 +4,23 @@ GoNomad is a platform for renting and lending cars and bikes — making travel e
 
 📌 About
 
-GoNomad simplifies the process of vehicle rentals. Whether you want to rent a car or bike, or lend your own, GoNomad connects owners and renters seamlessly through a modern and easy-to-use interface.
+   GoNomad simplifies the process of vehicle rentals. Whether you want to rent a car or bike, or lend your own, GoNomad connects owners and renters seamlessly through a modern and easy-to-use interface.
 
 ✨ Features
 
-Browse available cars and bikes for rent
+  Browse available cars and bikes for rent
 
-List your own vehicle for lending
+  List your own vehicle for lending
 
-Secure authentication system
+  Responsive and mobile-friendly design
 
-Responsive and mobile-friendly design
+  RESTful APIs for rentals and listings
 
-RESTful APIs for rentals and listings
-
-MongoDB integration for reliable data storage
+  MongoDB integration for reliable data storage
 
 🛠 Tech Stack
 
-MongoDB – Database for storing listings and users
-
-Express.js – Backend framework for APIs
-
-React.js – Frontend library for user interface
-
-Node.js – Backend runtime environment
-
-📂 Project Structure
-GoNomad/
-├── client/          # React frontend
-├── server/          # Express + Node.js backend
-│   ├── models/      # MongoDB models
-│   ├── routes/      # API routes
-│   └── controllers/ # Business logic
-└── README.md
+MongoDB → Database (stores app data)
+Express.js → Backend framework (handles server logic, APIs, middleware)
+React.js → Frontend library (builds UI, handles user interactions)
+Node.js → Runtime environment (runs JavaScript on the server)
