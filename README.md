@@ -279,7 +279,7 @@ To request a new feature:
 
 ## 🆘 Support
 
-For support, email your-email@example.com or open an issue on GitHub.
+For support, email 22bcs029@nith.ac.in or open an issue on GitHub.
 
 ### Additional Resources
 - [Express.js Documentation](https://expressjs.com/)
