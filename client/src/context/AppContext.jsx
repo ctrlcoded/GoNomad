@@ -25,13 +25,15 @@ export const AppProvider = ({ children })=>{
     const fetchUser = async ()=>{
         try {
            const {data} = await axios.get('/api/user/data')
-           if (data.success) {
+           if (data.success && data.user) {
             setUser(data.user)
             setIsOwner(data.user.role === 'owner')
            }else{
+            logout()
             navigate('/')
            }
         } catch (error) {
+            logout()
             toast.error(error.message)
         }
     }

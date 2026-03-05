@@ -30,8 +30,9 @@ import filter_icon from "./filter_icon.svg"
 import edit_icon from "./edit_icon.svg"
 import calendar_icon_colored from "./calendar_icon_colored.svg"
 import location_icon_colored from "./location_icon_colored.svg"
-import testimonial_image_1 from "./testimonial_image_1.jpg"
-import testimonial_image_2 from "./testimonial_image_2.JPG"
+import testimonial_image_1 from "./testimonial_image_1.png"
+import testimonial_image_2 from "./testimonial_image_2.png"
+import testimonial_image_3 from "./testimonial_image_3.png"
 import main_car from "./main_car.png"
 import banner_car_image from "./banner_car_image.png"
 import user_profile from "./user_profile.png"
@@ -41,7 +42,7 @@ import car_image2 from "./car_image2.png"
 import car_image3 from "./car_image3.png"
 import car_image4 from "./car_image4.png"
 
-export const cityList = ['Palampur', 'Hamirpur', 'Shimla', 'Dharamshala']
+export const cityList = ['Palampur', 'Hamirpur', 'Shimla', 'Dharamshala', 'Manali', 'Kullu', 'Mandi', 'Chandigarh', 'Dehradun', 'Amritsar']
 
 export const assets = {
     logo,
@@ -78,6 +79,7 @@ export const assets = {
     filter_icon,
     testimonial_image_1,
     testimonial_image_2,
+    testimonial_image_3,
     main_car,
     banner_car_image,
     car_image1,
@@ -102,11 +104,11 @@ export const ownerMenuLinks = [
 ]
 
 export const dummyUserData = {
-  "_id": "6847f7cab3d8daecdb517095",
-  "name": "GreatStack",
-  "email": "admin@example.com",
-  "role": "owner",
-  "image": user_profile,
+    "_id": "6847f7cab3d8daecdb517095",
+    "name": "GreatStack",
+    "email": "admin@example.com",
+    "role": "owner",
+    "image": user_profile,
 }
 
 export const dummyCarData = [
