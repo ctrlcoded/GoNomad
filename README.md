@@ -1,293 +1,337 @@
-# GoNomad 🚗
+<div align="center">
 
-A comprehensive full-stack platform for renting cars and bikes. GoNomad connects vehicle owners with customers seeking reliable and affordable transportation solutions.
+# 🚗 GoNomad
 
-## 🎯 Project Overview
+### Your Journey, Your Ride.
 
-GoNomad is a modern, scalable car and bike rental platform built with cutting-edge technologies. It solves the transportation accessibility problem by providing users with:
+A full-stack car rental platform connecting vehicle owners with travelers across North India.
 
-- **Easy vehicle booking** - Browse and book cars/bikes with just a few clicks
-- **Owner management** - Vehicle owners can manage their fleet and bookings
-- **Secure authentication** - JWT-based authentication for both users and owners
-- **Image management** - Seamless image uploads with ImageKit integration
-- **Real-time updates** - Monitor bookings and vehicle status
+[![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
+[![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)](https://react.dev/)
+[![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
+[![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 
-## 📋 Table of Contents
+</div>
 
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Installation](#-installation)
-- [Usage](#-usage)
-- [Project Structure](#-project-structure)
-- [Configuration](#-configuration)
-- [Contributing](#-contributing)
-- [License](#-license)
-- [Authors & Acknowledgments](#-authors--acknowledgments)
-- [Support](#-support)
+---
 
-## ✨ Features
+## 📖 About
 
-### User Features
-- 🔐 Secure user authentication and registration
-- 🚗 Browse available cars and bikes
-- 📋 View detailed vehicle information
-- 📅 Book vehicles for desired dates
-- 📝 Manage personal bookings
-- 💬 Newsletter subscription
+GoNomad is a modern, production-ready car rental platform built on the **MERN stack**. It provides a dual-interface experience — **customers** can browse, book, and manage vehicle rentals, while **vehicle owners** get a dedicated dashboard to list their fleet, manage bookings, and track revenue.
 
-### Owner Features
-- 📊 Comprehensive dashboard
-- ➕ Add and manage vehicle listings
-- 📈 Track booking requests
-- ✅ Accept/decline bookings
-- 👥 Monitor booking history
+The platform covers **10+ cities** across North India including Shimla, Manali, Chandigarh, Dharamshala, Dehradun, and more.
 
-### General Features
-- 🎨 Responsive and modern UI design
-- 📱 Mobile-friendly interface
-- 🏃 Fast performance with Vite
-- 🛡️ Data validation and security
-- 📦 Image upload and storage
+---
+
+## ✨ Key Features
+
+<table>
+<tr>
+<td width="50%">
+
+### � For Customers
+- Browse & search cars by city
+- View detailed car specs (fuel, transmission, seats)
+- Real-time availability checking
+- Book vehicles with date selection
+- Track booking status (pending → confirmed → completed)
+- Responsive mobile-friendly UI
+
+</td>
+<td width="50%">
+
+### 🏢 For Owners
+- Dedicated owner dashboard with revenue stats
+- Add cars with drag-and-drop image upload
+- Manage fleet — toggle availability, delete listings
+- Accept or decline incoming bookings
+- Upload/update profile image
+- Quick navigation back to the main site
+
+</td>
+</tr>
+</table>
+
+### 🔐 Platform-wide
+- JWT-based authentication (login/register)
+- Role-based access control (user ↔ owner)
+- Cloud image storage via **ImageKit**
+- Form validation with inline error feedback
+- Smooth animations with **Framer Motion**
+- Toast notifications for all actions
+- Vercel-ready deployment configuration
+
+---
 
 ## 🛠️ Tech Stack
 
-### Frontend
-- **Framework**: React 19.1.0
-- **Build Tool**: Vite
-- **Styling**: Tailwind CSS 4.1.10
-- **HTTP Client**: Axios
-- **Routing**: React Router DOM 7.6.2
-- **Animations**: Motion 12.19.1
-- **Notifications**: React Hot Toast 2.5.2
-- **Linting**: ESLint
+| Layer | Technology | Version |
+|-------|-----------|---------|
+| **Frontend** | React | 19.x |
+| **Build Tool** | Vite | Latest |
+| **Styling** | Tailwind CSS | 4.x |
+| **Animations** | Motion (Framer) | 12.x |
+| **HTTP Client** | Axios | Latest |
+| **Routing** | React Router DOM | 7.x |
+| **Backend** | Express.js | 5.x |
+| **Database** | MongoDB + Mongoose | 8.x |
+| **Auth** | JWT + Bcrypt | — |
+| **File Upload** | Multer → ImageKit | — |
+| **Notifications** | React Hot Toast | 2.x |
 
-### Backend
-- **Runtime**: Node.js
-- **Framework**: Express.js 5.1.0
-- **Database**: MongoDB with Mongoose 8.16.0
-- **Authentication**: JWT (JSON Web Tokens)
-- **Password Hashing**: Bcrypt 6.0.0
-- **File Upload**: Multer 2.0.1
-- **Image Storage**: ImageKit
-- **CORS**: Enabled for cross-origin requests
-- **Dev Tool**: Nodemon 3.1.10
-
-## 📦 Installation
-
-### Prerequisites
-Before you begin, ensure you have the following installed:
-- Node.js (v16.0.0 or higher)
-- npm or yarn
-- MongoDB (local or MongoDB Atlas)
-- Git
-
-### Clone the Repository
-```bash
-git clone https://github.com/yourusername/go-nomad.git
-cd go-nomad
-```
-
-### Backend Setup
-
-1. Navigate to the server directory:
-```bash
-cd server
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Create a `.env` file in the server directory with the following variables:
-```env
-PORT=5000
-MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret_key
-IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
-IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
-IMAGEKIT_URL_ENDPOINT=your_imagekit_url_endpoint
-CLIENT_URL=http://localhost:5173
-```
-
-4. Start the server:
-```bash
-npm run server  # Development mode with nodemon
-# or
-npm start      # Production mode
-```
-
-The server will run on `http://localhost:5000`
-
-### Frontend Setup
-
-1. Navigate to the client directory:
-```bash
-cd client
-```
-
-2. Install dependencies:
-```bash
-npm install
-```
-
-3. Create a `.env` file in the client directory (if needed):
-```env
-VITE_API_BASE_URL=http://localhost:5000/api
-```
-
-4. Start the development server:
-```bash
-npm run dev
-```
-
-The client will run on `http://localhost:5173`
-
-5. Build for production:
-```bash
-npm run build
-```
-
-## 🚀 Usage
-
-### For Users
-1. Open the application at `http://localhost:5173`
-2. Register or login with your credentials
-3. Browse available vehicles on the Cars page
-4. Click on a vehicle to view details
-5. Select your booking dates and confirm
-6. View your bookings in the "My Bookings" section
-7. Subscribe to our newsletter for updates
-
-### For Owners
-1. Login as an owner or register as a new owner
-2. Navigate to the Owner Dashboard
-3. Click "Add Car" to list a new vehicle
-4. Fill in vehicle details and upload images
-5. Manage your fleet in "Manage Cars"
-6. Review and respond to booking requests in "Manage Bookings"
-7. Track your booking history and earnings
-
-### API Endpoints
-
-#### User Routes
-```
-POST   /api/users/register      - Register new user
-POST   /api/users/login         - User login
-GET    /api/users/profile       - Get user profile
-```
-
-#### Owner Routes
-```
-POST   /api/owners/register     - Register as owner
-POST   /api/owners/add-car      - Add new vehicle
-GET    /api/owners/cars         - Get owner's vehicles
-PUT    /api/owners/update-car   - Update vehicle details
-GET    /api/owners/bookings     - Get booking requests
-```
-
-#### Booking Routes
-```
-POST   /api/bookings/create     - Create new booking
-GET    /api/bookings/my-bookings - Get user's bookings
-PUT    /api/bookings/update     - Update booking status
-```
+---
 
 ## 📂 Project Structure
 
 ```
-go-nomad/
-├── client/                  # React frontend
-│   ├── src/
-│   │   ├── components/     # Reusable React components
-│   │   ├── pages/          # Page components
-│   │   ├── context/        # React context (state management)
-│   │   ├── assets/         # Images and static files
-│   │   └── App.jsx
-│   ├── public/
-│   ├── package.json
-│   └── vite.config.js
+GoNomad/
+├── client/                          # React frontend (Vite)
+│   └── src/
+│       ├── assets/                  # Images, icons, static data
+│       │   └── assets.js            # Centralized asset exports & dummy data
+│       ├── components/              # Reusable UI components
+│       │   ├── Navbar.jsx           # Main navigation bar
+│       │   ├── Hero.jsx             # Landing hero with city search
+│       │   ├── CarCard.jsx          # Vehicle listing card
+│       │   ├── FeaturedSection.jsx  # Stats & highlights
+│       │   ├── Testimonial.jsx      # Customer reviews
+│       │   ├── Newsletter.jsx       # Email subscription
+│       │   ├── Banner.jsx           # CTA banner
+│       │   ├── Footer.jsx           # Site footer
+│       │   ├── Login.jsx            # Auth modal (login/register)
+│       │   ├── Loader.jsx           # Loading spinner
+│       │   ├── Title.jsx            # Section title component
+│       │   └── owner/              # Owner-specific components
+│       │       ├── Sidebar.jsx      # Dashboard sidebar navigation
+│       │       └── Title.jsx        # Owner section title
+│       ├── context/
+│       │   └── AppContext.jsx       # Global state & API config
+│       ├── pages/
+│       │   ├── Home.jsx             # Landing page
+│       │   ├── Cars.jsx             # Vehicle browse & filter
+│       │   ├── CarDetails.jsx       # Single car detail + booking
+│       │   ├── MyBookings.jsx       # User booking history
+│       │   └── owner/              # Owner dashboard pages
+│       │       ├── Layout.jsx       # Dashboard layout wrapper
+│       │       ├── Dashboard.jsx    # Stats & recent bookings
+│       │       ├── AddCar.jsx       # Add new vehicle form
+│       │       ├── ManageCars.jsx   # Fleet management
+│       │       └── ManageBookings.jsx  # Booking management
+│       ├── App.jsx                  # Root app with routing
+│       ├── main.jsx                 # Entry point
+│       └── index.css                # Global styles
 │
-└── server/                  # Node.js backend
-    ├── controllers/        # Route handlers
-    ├── models/            # MongoDB models
-    ├── routes/            # API routes
-    ├── middleware/        # Custom middleware
-    ├── configs/           # Configuration files
-    ├── server.js
+└── server/                          # Express backend
+    ├── configs/                     # DB & ImageKit configuration
+    ├── controllers/
+    │   ├── userController.js        # Auth, profile, car listing
+    │   ├── ownerController.js       # Fleet CRUD, dashboard data
+    │   └── bookingController.js     # Booking lifecycle
+    ├── middleware/
+    │   ├── auth.js                  # JWT verification middleware
+    │   └── multer.js                # File upload config
+    ├── models/
+    │   ├── User.js                  # User schema (name, email, role, image)
+    │   ├── Car.js                   # Car schema (brand, model, specs, price)
+    │   └── Booking.js               # Booking schema (dates, status, price)
+    ├── routes/
+    │   ├── userRoutes.js            # /api/user/*
+    │   ├── ownerRoutes.js           # /api/owner/*
+    │   └── bookingRoutes.js         # /api/bookings/*
+    ├── server.js                    # Express app entry point
+    ├── vercel.json                  # Vercel deployment config
     └── package.json
 ```
 
-## ⚙️ Configuration
+---
 
-### Environment Variables
+## 🚀 Getting Started
 
-**Server (.env)**
-- `PORT` - Server port (default: 5000)
-- `MONGODB_URI` - MongoDB connection string
-- `JWT_SECRET` - Secret key for JWT signing
-- `IMAGEKIT_*` - ImageKit API credentials
-- `CLIENT_URL` - Frontend URL for CORS
+### Prerequisites
 
-**Client (.env)**
-- `VITE_API_BASE_URL` - Backend API URL
+- **Node.js** v16+ and npm
+- **MongoDB** (local instance or [MongoDB Atlas](https://www.mongodb.com/atlas))
+- **ImageKit** account ([sign up free](https://imagekit.io/))
 
-### Database Models
-- **User** - Stores user account information
-- **Car** - Vehicle listings and details
-- **Booking** - Rental bookings and status
-- **Owner** - Vehicle owner information
+### 1. Clone the Repository
 
-## 🤝 Contributing
+```bash
+git clone https://github.com/ctrlcoded/GoNomad.git
+cd GoNomad
+```
 
-We welcome contributions! To contribute to GoNomad, please follow these steps:
+### 2. Backend Setup
 
-1. **Fork the repository** on GitHub
-2. **Create a feature branch**:
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-3. **Commit your changes**:
-   ```bash
-   git commit -m "Add your feature description"
-   ```
-4. **Push to the branch**:
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-5. **Submit a Pull Request** with a clear description of your changes
+```bash
+cd server
+npm install
+```
 
-### Reporting Bugs
-If you find a bug, please create an issue with:
-- A clear description of the bug
-- Steps to reproduce
-- Expected vs. actual behavior
-- Screenshots (if applicable)
+Create a `.env` file in the `server/` directory:
 
-### Requesting Features
-To request a new feature:
-- Open an issue with the "enhancement" label
-- Clearly describe the feature and its use case
-- Include any relevant examples or mockups
+```env
+PORT=5000
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/gonomad
+JWT_SECRET=your_super_secret_jwt_key
+IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
+IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
+IMAGEKIT_URL_ENDPOINT=https://ik.imagekit.io/your_id
+CLIENT_URL=http://localhost:5173
+```
 
-**Special Thanks To**
-- MongoDB community for excellent documentation
-- Express.js team for the robust framework
-- React community for continuous improvements
-- ImageKit for image management solutions
-- All contributors and testers who helped improve GoNomad
+Start the server:
 
-## 🆘 Support
+```bash
+npm run server    # Development (with hot-reload via Nodemon)
+npm start         # Production
+```
 
-For support, email 22bcs029@nith.ac.in or open an issue on GitHub.
+> Server runs at `http://localhost:5000`
 
-### Additional Resources
-- [Express.js Documentation](https://expressjs.com/)
-- [React Documentation](https://react.dev/)
-- [MongoDB Manual](https://docs.mongodb.com/manual/)
-- [Mongoose Documentation](https://mongoosejs.com/)
-- [Tailwind CSS Docs](https://tailwindcss.com/docs)
+### 3. Frontend Setup
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+> Client runs at `http://localhost:5173`
+
+### 4. Build for Production
+
+```bash
+cd client
+npm run build      # Outputs to client/dist/
+```
 
 ---
 
-**Made with ❤️ by the Aryan**
+## � API Reference
+
+### Authentication
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| `POST` | `/api/user/register` | Create new account | ✗ |
+| `POST` | `/api/user/login` | Login & get JWT token | ✗ |
+| `GET` | `/api/user/data` | Get current user profile | ✓ |
+
+### Cars
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| `GET` | `/api/user/cars` | List all available cars | ✗ |
+| `POST` | `/api/owner/add-car` | Add a new car listing | ✓ Owner |
+| `GET` | `/api/owner/cars` | Get owner's car listings | ✓ Owner |
+| `POST` | `/api/owner/toggle-car` | Toggle car availability | ✓ Owner |
+| `POST` | `/api/owner/delete-car` | Delete a car listing | ✓ Owner |
+
+### Bookings
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| `POST` | `/api/bookings/check-availability` | Check car availability for dates | ✗ |
+| `POST` | `/api/bookings/create` | Create a new booking | ✓ |
+| `GET` | `/api/bookings/user` | Get user's bookings | ✓ |
+| `GET` | `/api/bookings/owner` | Get owner's bookings | ✓ Owner |
+| `POST` | `/api/bookings/change-status` | Update booking status | ✓ Owner |
+
+### Owner
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| `POST` | `/api/owner/change-role` | Upgrade user to owner role | ✓ |
+| `GET` | `/api/owner/dashboard` | Get dashboard stats & data | ✓ Owner |
+| `POST` | `/api/owner/update-image` | Update owner profile image | ✓ Owner |
+
+---
+
+## �️ Database Schema
+
+```mermaid
+erDiagram
+    USER {
+        ObjectId _id
+        string name
+        string email
+        string password
+        string role "user | owner"
+        string image
+    }
+    CAR {
+        ObjectId _id
+        ObjectId owner FK
+        string brand
+        string model
+        string image
+        int year
+        string category
+        int seating_capacity
+        string fuel_type
+        string transmission
+        int pricePerDay
+        string location
+        string description
+        boolean isAvailable
+    }
+    BOOKING {
+        ObjectId _id
+        ObjectId car FK
+        ObjectId user FK
+        ObjectId owner FK
+        date pickupDate
+        date returnDate
+        string status "pending | confirmed | completed | cancelled"
+        int price
+        boolean isPaid
+    }
+
+    USER ||--o{ CAR : "owns"
+    USER ||--o{ BOOKING : "makes"
+    CAR ||--o{ BOOKING : "booked_in"
+```
+
+---
+
+## 🌐 Deployment
+
+The project includes a `vercel.json` for serverless deployment:
+
+**Backend** → Deploy `server/` to [Vercel](https://vercel.com/) or [Render](https://render.com/)  
+**Frontend** → Deploy `client/` to [Vercel](https://vercel.com/) or [Netlify](https://netlify.com/)
+
+> Remember to set all environment variables in your hosting dashboard.
+
+---
+
+## 🤝 Contributing
+
+1. **Fork** the repository
+2. Create a feature branch: `git checkout -b feature/awesome-feature`
+3. Commit changes: `git commit -m "feat: add awesome feature"`
+4. Push to branch: `git push origin feature/awesome-feature`
+5. Open a **Pull Request**
+
+#### Bug Reports
+Open an issue with steps to reproduce, expected vs. actual behavior, and screenshots if applicable.
+
+#### Feature Requests
+Open an issue with the `enhancement` label — describe the feature, its use case, and provide mockups if possible.
+
+---
+
+## 📄 License
+
+This project is licensed under the ISC License.
+
+---
+
+<div align="center">
+
+**Made with ❤️ by [Aryan](https://github.com/ctrlcoded)**
+
+📧 22bcs029@nith.ac.in
+
+</div>
