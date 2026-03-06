@@ -44,6 +44,7 @@ The platform covers **10+ cities** across North India including Shimla, Manali, 
 ### 🏢 For Owners
 - Dedicated owner dashboard with revenue stats
 - Add cars with drag-and-drop image upload
+- **AI-powered description generator** using Gemini
 - Manage fleet — toggle availability, delete listings
 - Accept or decline incoming bookings
 - Upload/update profile image
@@ -56,6 +57,7 @@ The platform covers **10+ cities** across North India including Shimla, Manali, 
 ### 🔐 Platform-wide
 - JWT-based authentication (login/register)
 - Role-based access control (user ↔ owner)
+- **Google Gemini API** integration for generative text
 - Cloud image storage via **ImageKit**
 - Form validation with inline error feedback
 - Smooth animations with **Framer Motion**
@@ -77,6 +79,7 @@ The platform covers **10+ cities** across North India including Shimla, Manali, 
 | **Backend** | Express.js | 5.x |
 | **Database** | MongoDB + Mongoose | 8.x |
 | **Auth** | JWT + Bcrypt | — |
+| **Generative AI**| Google Gemini | — |
 | **File Upload** | Multer → ImageKit | — |
 | **Notifications** | React Hot Toast | 2.x |
 
@@ -127,7 +130,8 @@ GoNomad/
     ├── controllers/
     │   ├── userController.js        # Auth, profile, car listing
     │   ├── ownerController.js       # Fleet CRUD, dashboard data
-    │   └── bookingController.js     # Booking lifecycle
+    │   ├── bookingController.js     # Booking lifecycle
+    │   └── aiController.js          # Google Gemini AI integration
     ├── middleware/
     │   ├── auth.js                  # JWT verification middleware
     │   └── multer.js                # File upload config
@@ -174,6 +178,7 @@ Create a `.env` file in the `server/` directory:
 PORT=5000
 MONGODB_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/gonomad
 JWT_SECRET=your_super_secret_jwt_key
+GEMINI_API_KEY=your_google_gemini_api_key
 IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
 IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
 IMAGEKIT_URL_ENDPOINT=https://ik.imagekit.io/your_id
@@ -245,6 +250,7 @@ npm run build      # Outputs to client/dist/
 | `POST` | `/api/owner/change-role` | Upgrade user to owner role | ✓ |
 | `GET` | `/api/owner/dashboard` | Get dashboard stats & data | ✓ Owner |
 | `POST` | `/api/owner/update-image` | Update owner profile image | ✓ Owner |
+| `POST` | `/api/owner/generate-description` | AI-generate car description | ✓ Owner |
 
 ---
 

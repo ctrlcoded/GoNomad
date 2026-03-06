@@ -33,6 +33,7 @@ const AddCar = () => {
   const [car, setCar] = useState(initialCarState)
 
   const [isLoading, setIsLoading] = useState(false)
+  const [isGeneratingDesc, setIsGeneratingDesc] = useState(false)
 
   // --- Validation ---
   const validate = () => {
@@ -99,6 +100,35 @@ const AddCar = () => {
     setCar(prev => ({ ...prev, [field]: value }))
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: undefined }))
+    }
+  }
+
+  // --- Generate AI Description ---
+  const handleGenerateDescription = async () => {
+    // Only require brand, model, year, and category for AI generation
+    if (!car.brand || !car.model || !car.year || !car.category) {
+      toast.error('Please fill in Brand, Model, Year, and Category first to generate a good description.')
+      return
+    }
+
+    setIsGeneratingDesc(true)
+    try {
+      const { data } = await axios.post('/api/owner/generate-description', {
+        brand: car.brand, model: car.model, year: car.year,
+        category: car.category, transmission: car.transmission,
+        fuel_type: car.fuel_type, seating_capacity: car.seating_capacity
+      })
+
+      if (data.success) {
+        updateCar('description', data.description)
+        toast.success('Description generated successfully!')
+      } else {
+        toast.error(data.message || 'Failed to generate description')
+      }
+    } catch (error) {
+      toast.error(error.message)
+    } finally {
+      setIsGeneratingDesc(false)
     }
   }
 
@@ -298,7 +328,25 @@ const AddCar = () => {
 
         {/* Car Description */}
         <div className='flex flex-col w-full'>
-          <label>Description</label>
+          <div className='flex justify-between items-end mb-1'>
+            <label>Description</label>
+            <button
+              type="button"
+              onClick={handleGenerateDescription}
+              disabled={isGeneratingDesc}
+              className={`text-xs flex items-center gap-1 px-3 py-1.5 rounded-full transition-colors ${isGeneratingDesc
+                  ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+                  : 'bg-indigo-50 text-indigo-600 hover:bg-indigo-100 border border-indigo-200 cursor-pointer'
+                }`}
+            >
+              {isGeneratingDesc ? (
+                <span className="flex items-center gap-1">
+                  <svg className="animate-spin h-3 w-3 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                  Generating...
+                </span>
+              ) : '✨ Generate with AI'}
+            </button>
+          </div>
           <textarea
             rows={5}
             maxLength={MAX_DESCRIPTION_LENGTH}
