@@ -15,7 +15,7 @@ export const generateCarDescription = async (req, res) => {
         }
 
         const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-        const modelConfig = genAI.getGenerativeModel({ model: "gemini-pro" });
+        const modelConfig = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
         const prompt = `Write a professional, catchy description for a car rental listing. 
 CRITICAL RULES:
