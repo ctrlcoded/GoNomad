@@ -1,4 +1,4 @@
-import { GoogleGenerativeAI } from "@google/generative-ai";
+import Groq from "groq-sdk";
 
 export const generateCarDescription = async (req, res) => {
     try {
@@ -9,13 +9,12 @@ export const generateCarDescription = async (req, res) => {
         }
 
         // Check if API key exists
-        if (!process.env.GEMINI_API_KEY) {
-            console.error("GEMINI_API_KEY is not set in environment variables");
+        if (!process.env.GROQ_API_KEY) {
+            console.error("GROQ_API_KEY is not set in environment variables");
             return res.json({ success: false, message: "AI service is not configured. Contact the administrator." });
         }
 
-        const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
-        const modelConfig = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+        const groq = new Groq({ apiKey: process.env.GROQ_API_KEY });
 
         const prompt = `Write a professional, catchy description for a car rental listing. 
 CRITICAL RULES:
@@ -33,8 +32,12 @@ Details:
 
 Focus on comfort, performance, and suitability for trips. Keep it engaging but EXTREMELY concise.`;
 
-        const result = await modelConfig.generateContent(prompt);
-        let description = result.response.text().trim();
+        const response = await groq.chat.completions.create({
+            messages: [{ role: "user", content: prompt }],
+            model: "moonshotai/kimi-k2-instruct-0905"
+        });
+
+        let description = response.choices[0]?.message?.content?.trim() || "";
 
         // Failsafe: ensure it never exceeds 500 chars
         if (description.length > 490) {
@@ -43,7 +46,7 @@ Focus on comfort, performance, and suitability for trips. Keep it engaging but E
 
         res.json({ success: true, description });
     } catch (error) {
-        console.error("Gemini AI Error:", error.message || error);
+        console.error("Groq AI Error:", error.message || error);
         res.json({ success: false, message: "Failed to generate description. " + (error.message || "Try again later.") });
     }
 };
