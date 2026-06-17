@@ -6,8 +6,8 @@ import Car from "../models/Car.js";
 
 // Generate JWT Token
 const generateToken = (userId)=>{
-    const payload = userId;
-    return jwt.sign(payload, process.env.JWT_SECRET)
+    // Sign an object payload so the token carries an expiry and is verifiable
+    return jwt.sign({ id: userId }, process.env.JWT_SECRET, { expiresIn: "7d" })
 }
 
 // Register User
