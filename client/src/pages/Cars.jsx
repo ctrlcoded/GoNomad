@@ -39,23 +39,34 @@ const Cars = () => {
   }
 
   const searchCarAvailablity = async () =>{
-    const {data} = await axios.post('/api/bookings/check-availability', {location: pickupLocation, pickupDate, returnDate})
-    if (data.success) {
-      setFilteredCars(data.availableCars)
-      if(data.availableCars.length === 0){
-        toast('No cars available')
+    try {
+      const {data} = await axios.post('/api/bookings/check-availability', {location: pickupLocation, pickupDate, returnDate})
+      if (data.success) {
+        setFilteredCars(data.availableCars)
+        if(data.availableCars.length === 0){
+          toast('No cars available')
+        }
+      } else {
+        toast.error(data.message)
+        setFilteredCars(cars)
       }
-      return null
+    } catch (error) {
+      toast.error(error.message)
+      setFilteredCars(cars)
     }
   }
 
+  // Depend on the primitive triggers, not the function identities (which are
+  // recreated every render and would cause the effect to re-fire in a loop).
   useEffect(()=>{
     isSearchData && searchCarAvailablity()
-  },[isSearchData, searchCarAvailablity])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[isSearchData, pickupLocation, pickupDate, returnDate])
 
   useEffect(()=>{
     cars.length > 0 && !isSearchData && applyFilter()
-  },[input, cars, isSearchData, applyFilter])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[input, cars, isSearchData])
 
   return (
     <div>

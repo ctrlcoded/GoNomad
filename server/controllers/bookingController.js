@@ -6,6 +6,7 @@ import Car from "../models/Car.js";
 const checkAvailability = async (car, pickupDate, returnDate) => {
     const bookings = await Booking.find({
         car,
+        status: { $ne: "cancelled" }, // cancelled bookings free up the dates
         pickupDate: { $lte: returnDate },
         returnDate: { $gte: pickupDate },
     })
@@ -43,16 +44,28 @@ export const createBooking = async (req, res) => {
         const { _id } = req.user;
         const { car, pickupDate, returnDate } = req.body;
 
+        if (!car || !pickupDate || !returnDate) {
+            return res.json({ success: false, message: "Missing booking fields" })
+        }
+
+        // Validate the date range before doing anything else
+        const picked = new Date(pickupDate);
+        const returned = new Date(returnDate);
+        if (isNaN(picked.getTime()) || isNaN(returned.getTime()) || returned <= picked) {
+            return res.json({ success: false, message: "Return date must be after pickup date" })
+        }
+
         const isAvailable = await checkAvailability(car, pickupDate, returnDate)
         if (!isAvailable) {
             return res.json({ success: false, message: "Car is not available" })
         }
 
         const carData = await Car.findById(car)
+        if (!carData) {
+            return res.json({ success: false, message: "Car not found" })
+        }
 
         // Calculate price based on pickupDate and returnDate
-        const picked = new Date(pickupDate);
-        const returned = new Date(returnDate);
         const noOfDays = Math.ceil((returned - picked) / (1000 * 60 * 60 * 24))
         const price = carData.pricePerDay * noOfDays;
 
